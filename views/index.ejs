@@ -1,0 +1,29 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>To-Do List</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <form action="/add" method="POST">
+    <input type="text" name="task" placeholder="New Task" required>
+    <button type="submit">Add Task</button>
+  </form>
+  <ul>
+    <% tasks.forEach(function(task) { %>
+      <li>
+        <%= task.name %>
+        <form action="/delete" method="POST" style="display: inline;">
+          <input type="hidden" name="taskId" value="<%= task._id %>">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
+
